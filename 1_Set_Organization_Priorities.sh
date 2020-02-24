@@ -96,7 +96,7 @@ OrgScore2_2_1="true"
 
 # 2.2.2 Ensure time set is within appropriate limits 
 # Not audited - only enforced if identified as priority
-OrgScore2_2_2="true"
+OrgScore2_2_2="false"
 # OrgScore2_2_2="false"
 
 # 2.3.3 Set a screen corner to Start Screen Saver 
@@ -111,14 +111,15 @@ OrgScore2_3_1="true"
 
 # 2.3.2 Secure screen saver corners 
 # Configuration Profile - Custom payload > com.apple.dock > wvous-tl-corner=0, wvous-br-corner=5, wvous-bl-corner=0, wvous-tr-corner=0
-OrgScore2_3_2="true"
+# Level 2
+OrgScore2_3_2="false"
 # OrgScore2_3_2="false"
 
 ## 2.3.3 Familiiarize users with scren lock tools or corner to Start Screen Saver (not scored)
 ## The rationale in the CIS Benchmark for this is incorrect. The computer will lock if the 
 ## display sleeps before the Screen Saver activates
 # Configuration Profile - Custom payload > com.apple.dock > wvous-tl-corner=0, wvous-br-corner=5, wvous-bl-corner=0, wvous-tr-corner=0
-OrgScore2_3_3="true"
+OrgScore2_3_3="false"
 # OrgScore2_3_3="false"
 
 # 2.4.1 Disable Remote Apple Events 
@@ -168,16 +169,16 @@ OrgScore2_6_1_1="true"
 # OrgScore2_6_1_1="false"
 
 # 2.6.1.2 Ensure all user storage APFS volumes are encrypted
-OrgScore2_6_1_2="true"
+OrgScore2_6_1_2="false"
 # OrgScore2_6_1_2="false"
 
 # 2.6.1.3 Ensure all user storage CoreStorage volumes are encrypted
-OrgScore2_6_1_3="true"
+OrgScore2_6_1_3="false"
 # OrgScore2_6_1_3="false"
 
 # 2.6.2 Enable Gatekeeper
 # Configuration Profile - Security and Privacy payload > General > Gatekeeper > Mac App Store and identified developers (selected)
-OrgScore2_6_2="true"
+OrgScore2_6_2="false"
 # OrgScore2_6_2="false"
 
 # 2.6.3 Enable Firewall 
@@ -187,7 +188,7 @@ OrgScore2_6_3="true"
 
 # 2.6.4 Enable Firewall Stealth Mode 
 # Configuration Profile - Security and Privacy payload > Firewall > Enable stealth mode (checked)
-OrgScore2_6_4="true"
+OrgScore2_6_4="false"
 # OrgScore2_6_4="false"
 
 # 2.6.5 Review Application Firewall Rules 
@@ -204,44 +205,52 @@ OrgScore2_6_5="true"
 ## It is considered user opt in.
 
 # 2.6.8 Disable sending diagnostic and usage data to Apple
-OrgScore2_6_8="true"
+# Level 2
+OrgScore2_6_8="false"
 # OrgScore2_6_8="false"
 
 # 2.7.1 iCloud configuration (Check for iCloud accounts) (Not Scored)
-OrgScore2_7_1="true"
+# Level 2
+OrgScore2_7_1="false"
 # OrgScore2_7_1="false"
 
 # 2.7.2 iCloud keychain (Not Scored)
+# Level 2
 # Configuration Profile - Restrictions payload > Functionality > Allow iCloud Keychain (unchecked)
-OrgScore2_7_2="true"
+OrgScore2_7_2="false"
 # OrgScore2_7_2="false"
 
 # 2.7.3 iCloud Drive (Not Scored)
+# Level 2
 # Configuration Profile - Restrictions payload > Functionality > Allow iCloud Drive (unchecked)
-OrgScore2_7_3="true"
+OrgScore2_7_3="false"
 # OrgScore2_7_3="false"
 
 # 2.7.4 iCloud Drive Document sync
+# Level 2
 # Configuration Profile - Restrictions payload - > Functionality > Allow iCloud Desktop & Documents (unchecked)
-OrgScore2_7_4="true"
+OrgScore2_7_4="false"
 # OrgScore2_7_4="false"
 
 # 2.7.5 iCloud Drive Desktop sync
+# Level 2
 # Configuration Profile - Restrictions payload - > Functionality > Allow iCloud Desktop & Documents (unchecked)
-OrgScore2_7_5="true"
+OrgScore2_7_5="false"
 # OrgScore2_7_5="false"
 
 # 2.8.1 Time Machine Auto-Backup 
+# Level 2
 # Time Machine is typically not used as an Enterprise backup solution
 # OrgScore2_8_1="true"
 OrgScore2_8_1="false"
+# TODO: Prove that Time Machine is not enabled
 
 ## 2.8.2 Time Machine Volumes Are Encrypted (Not Scored)
 ## Time Machine is typically not used as an Enterprise backup solution
 
 # 2.9 Pair the remote control infrared receiver if enabled
 # Since 2013 only the Mac Mini has an infrared receiver
-OrgScore2_9="true"
+OrgScore2_9="false"
 # OrgScore2_9="false"
 
 # 2.10 Enable Secure Keyboard Entry in terminal.app 
@@ -249,8 +258,9 @@ OrgScore2_9="true"
 OrgScore2_10="true"
 # OrgScore2_10="false"
 
-# 2.11 Java 6 is not the default Java runtime 
-OrgScore2_11="true"
+# 2.11 Java 6 is not the default Java runtime
+# Level 2
+OrgScore2_11="false"
 # OrgScore2_11="false"
 
 ## 2.12 Securely delete files as needed (Not Scored)
@@ -286,9 +296,10 @@ OrgScore3_5="true"
 OrgScore3_6="true"
 # OrgScore3_6="false"
 
-# 4.1 Disable Bonjour advertising service 
+# 4.1 Disable Bonjour advertising service
+# Level 2
 # Configuration Profile - Custom payload > com.apple.mDNSResponder > NoMulticastAdvertisements=true
-OrgScore4_1="true"
+OrgScore4_1="false"
 # OrgScore4_1="false"
 
 # 4.2 Enable "Show Wi-Fi status in menu bar" 
@@ -296,6 +307,7 @@ OrgScore4_2="true"
 # OrgScore4_2="false"
 
 ## 4.3 Create network specific locations (Not Scored)
+# Level 2
 
 # 4.4 Ensure http server is not running 
 OrgScore4_4="true"
@@ -318,7 +330,8 @@ OrgScore5_1_3="true"
 # OrgScore5_1_3="false"
 
 # 5.1.4 Check Library folder for world writable files
-OrgScore5_1_4="true"
+# Level 2
+OrgScore5_1_4="false"
 # OrgScore5_1_4="false"
 
 ## Managed by Active Directory, Enterprise Connect, or a configuration profile.
@@ -340,16 +353,19 @@ OrgScore5_4="true"
 # OrgScore5_4="false"
 
 # 5.7 Automatically lock the login keychain for inactivity
+# Level 2
 # This is a very bad idea. It will confuse users.
 # OrgScore5_7="true"
 OrgScore5_7="false"
 
 # 5.8 Ensure login keychain is locked when the computer sleeps
+# Level 2
 # This is a very bad idea. It will confuse users.
 # OrgScore5_8="true"
 OrgScore5_8="false"
 
 # 5.9 Enable OCSP and CRL certificate checking
+# Level 2
 # Does not work as a Configuration Profile - Custom payload > com.apple.security.revocation
 # This is a very bad idea. CRL and OCSP should be set to Best Attempt.
 # OrgScore5_9="true"
@@ -370,7 +386,8 @@ OrgScore5_13="true"
 # OrgScore5_13="false"
 
 # 5.14 Ensure system is set to hibernate
-OrgScore5_14="true"
+# Level 2
+OrgScore5_14="false"
 # OrgScore5_14="false"
 
 # 5.15 Require an administrator password to access system-wide preferences
@@ -387,21 +404,25 @@ OrgScore5_17="true"
 # OrgScore5_17="false"
 
 # 5.18 Create a Login window banner
+# Level 2
 # Policy Banner https://support.apple.com/en-us/HT202277
-OrgScore5_18="true"
+OrgScore5_18="false"
 # OrgScore5_18="false"
 
 ## 5.19 Do not enter a password-related hint (Not Scored)
 ## Not needed if 6.1.2 Disable "Show password hints" is enforced.
 
 # 5.20 Disable Fast User Switching (Not Scored)
+# Level 2
 # Configuration Profile - LoginWindow payload > Options > Enable Fast User Switching (unchecked)
-OrgScore5_20="true"
+OrgScore5_20="false"
 # OrgScore5_20="false"
 
 ## 5.21 Secure individual keychains and items (Not Scored)
+# Level 2
 
 ## 5.22 Create specialized keychains for different purposes (Not Scored)
+# Level 2
 
 # 5.23 System Integrity Protection status
 OrgScore5_23="true"
@@ -442,9 +463,10 @@ OrgScore6_3="true"
 # OrgScore6_3="false"
 
 ## 6.4 Safari disable Internet Plugins for global use (Not Scored)
+# Level 2
 
 ## 6.5 Use parental controls for systems that are not centrally managed (Not Scored)
-
+# Level 2
 
 ##################################################################
 ############# DO NOT MODIFY ANYTHING BELOW THIS LINE #############
