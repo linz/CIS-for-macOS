@@ -357,9 +357,9 @@ fi
 Audit2_4_7="$(defaults read "$plistlocation" OrgScore2_4_7)"
 # If organizational score is 1 or true, check status of client and user
 if [ "$Audit2_4_7" = "1" ]; then
-	btSharing="$(/usr/libexec/PlistBuddy -c "print :PrefKeyServicesEnabled"  /Users/"$currentUser"/Library/Preferences/ByHost/com.apple.Bluetooth."$hardwareUUID".plist)"
+	btSharing="$(system_profiler SPBluetoothDataType | grep State | grep -c -v Disabled)"
 	# If client fails, then note category in audit file
-	if [ "$btSharing" = "true" ]; then
+	if [ "$btSharing" != "0" ]; then
 		echo "* 2.4.7 Disable Bluetooth Sharing" >> "$auditfilelocation"
 		echo "$(date -u)" "2.4.7 fix" | tee -a "$logFile"; else
 	 	echo "$(date -u)" "2.4.7 passed" | tee -a "$logFile"
