@@ -134,7 +134,7 @@ if [ "$Audit1_4" = "1" ]; then
 Audit1_5="$(defaults read "$plistlocation" OrgScore1_5)"
 # If organizational score is 1 or true, check status of client
 if [ "$Audit1_5" = "1" ]; then
-	updateRestart="$(defaults read /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired)"
+	updateRestart="$(defaults read /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates)"
 	# If client fails, then note category in audit file
 	if [ "$updateRestart" = "1" ]; then
 		echo "$(date -u)" "1.5 passed" | tee -a "$logFile"
@@ -764,7 +764,7 @@ Audit3_3="$(defaults read "$plistlocation" OrgScore3_3)"
 # If organizational score is 1 or true, check status of client
 if [ "$Audit3_3" = "1" ]; then
 	auditRetention="$(cat /etc/security/audit_control | egrep expire-after)"
-	if [ "$auditRetention" = "expire-after:60D OR 1G" ]; then
+	if [ "$auditRetention" = "expire-after:60d OR 1G" ]; then
 		echo "$(date -u)" "3.3 passed" | tee -a "$logFile"
 		defaults write "$plistlocation" OrgScore3_3 -bool false; else
 		echo "* 3.3 Ensure security auditing retention" >> "$auditfilelocation"
@@ -1052,7 +1052,7 @@ Audit5_13="$(defaults read "$plistlocation" OrgScore5_13)"
 # If organizational score is 1 or true, check status of client
 # If client fails, then note category in audit file
 if [ "$Audit5_13" = "1" ]; then
-		screensaverPwd="$(defaults read /Users/"$currentUser"/Library/Preferences/com.apple.screensaver askForPassword)"
+		screensaverPwd="$(profiles list | grep "config.screensaver" -c)"
 		if [ "$screensaverPwd" = "1" ]; then
 			echo "$(date -u)" "5.13 passed" | tee -a "$logFile"
 			defaults write "$plistlocation" OrgScore5_13 -bool false; else
@@ -1116,7 +1116,7 @@ fi
 Audit5_17="$(defaults read "$plistlocation" OrgScore5_17)"
 # If organizational score is 1 or true, check status of client
 if [ "$Audit5_17" = "1" ]; then
-		loginMessage="$(defaults read /Library/Preferences/com.apple.loginwindow.plist LoginwindowText)"
+		loginMessage="$(defaults read /Library/Preferences/com.apple.loginwindow.plist LoginwindowText 2>&1)"
 		if [[ $loginMessage = "" ]] || [[ $loginMessage = *"does not exist"* ]]; then
 			echo "* 5.17 Create a custom message for the Login Screen" >> "$auditfilelocation"
 			echo "$(date -u)" "5.17 fix" | tee -a "$logFile"; else
@@ -1174,7 +1174,7 @@ fi
 Audit6_1_1="$(defaults read "$plistlocation" OrgScore6_1_1)"
 # If organizational score is 1 or true, check status of client
 if [ "$Audit6_1_1" = "1" ]; then
-		loginwindowFullName="$(defaults read /Library/Preferences/com.apple.loginwindow SHOWFULLNAME)"
+		loginwindowFullName="$(defaults read /Library/Preferences/com.apple.loginwindow SHOWFULLNAME 2>&1)"
 		if [ "$loginwindowFullName" != "1" ]; then
 			echo "* 6.1.1 Display login window as name and password" >> "$auditfilelocation"
 			echo "$(date -u)" "6.1.1 fix" | tee -a "$logFile"; else
@@ -1188,7 +1188,7 @@ if [ "$Audit6_1_1" = "1" ]; then
 Audit6_1_2="$(defaults read "$plistlocation" OrgScore6_1_2)"
 # If organizational score is 1 or true, check status of client
 if [ "$Audit6_1_2" = "1" ]; then
-		passwordHints="$(defaults read /Library/Preferences/com.apple.loginwindow RetriesUntilHint)"
+		passwordHints="$(defaults read /Library/Preferences/com.apple.loginwindow RetriesUntilHint 2>&1)"
 		if [ "$passwordHints" -gt 0 ] || [ "$passwordHints" = *exist* ]; then
 			echo "* 6.1.2 Disable Show password hints" >> "$auditfilelocation"
 			echo "$(date -u)" "6.1.2 fix" | tee -a "$logFile"; else
@@ -1260,11 +1260,12 @@ fi
 # Configuration Profile - Custom payload > com.apple.Safari > AutoOpenSafeDownloads=false
 # Best remeidated with a configuration profile
 # Verify organizational score
+# defaults read -app REQUIRED full disk access to be enabled for the app executing it or it will not find the preferences
 Audit6_3="$(defaults read "$plistlocation" OrgScore6_3)"
 # If organizational score is 1 or true, check status of client
 if [ "$Audit6_3" = "1" ]; then
-		safariSafe="$(defaults read /Users/"$currentUser"/Library/Preferences/com.apple.Safari AutoOpenSafeDownloads)"
-		if [ "$safariSafe" = "1" ]; then
+		safariSafe="$(defaults read -app Safari AutoOpenSafeDownloads 2>&1)"
+		if [ "$safariSafe" != "0" ]; then
 			echo "* 6.3 Disable the automatic run of safe files in Safari" >> "$auditfilelocation"
 			echo "$(date -u)" "6.3 fix" | tee -a "$logFile"; else
 			echo "$(date -u)" "6.3 passed" | tee -a "$logFile"

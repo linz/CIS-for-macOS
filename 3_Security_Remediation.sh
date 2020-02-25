@@ -102,7 +102,7 @@ Audit1_5="$(defaults read "$plistlocation" OrgScore1_5)"
 # If organizational score is 1 or true, check status of client
 # If client fails, then remediate
 if [ "$Audit1_5" = "1" ]; then
-	defaults write /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired -bool true
+	defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool true
 	echo "$(date -u)" "1.5 remediated" | tee -a "$logFile"
 fi
 
@@ -442,10 +442,10 @@ Audit3_3="$(defaults read "$plistlocation" OrgScore3_3)"
 if [ "$Audit3_3" = "1" ]; then
 	cp /etc/security/audit_control /etc/security/audit_control_old
 	oldExpireAfter=$(cat /etc/security/audit_control | egrep expire-after)
-	sed "s/${oldExpireAfter}/expire-after:60d OR 1G" /etc/security/audit_control_old > /etc/security/audit_control
+	sed "s/${oldExpireAfter}/expire-after:60d OR 1G/" /etc/security/audit_control_old > /etc/security/audit_control
 	chmod 644 /etc/security/audit_control
 	chown root:wheel /etc/security/audit_control
-	echo "$(date -u)" "3.3 remediated" | tee -a "$logfile"	
+	echo "$(date -u)" "3.3 remediated" | tee -a "$logfile"
     fi
 
 # 3.5 Retain install.log for 365 or more days 
@@ -666,7 +666,7 @@ Audit5_13="$(defaults read "$plistlocation" OrgScore5_13)"
 # If organizational score is 1 or true, check status of client
 # If client fails, then remediate
 if [ "$Audit5_13" = "1" ]; then
-	defaults write /Users/"$currentUser"/Library/Preferences/com.apple.screensaver askForPassword -int 1
+	profiles -I -F ./profiles/screensaver.askForPassword.profile
 	echo "$(date -u)" "5.13 remediated" | tee -a "$logFile"
 fi
 

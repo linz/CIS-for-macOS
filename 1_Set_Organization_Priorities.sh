@@ -445,7 +445,8 @@ OrgScore6_1_3="true"
 
 # 6.1.4 Disable "Allow guests to connect to shared folders" 
 # Configuration Profile - 6.1.4 Disable Allow guests to connect to shared folders - Custom payload > com.apple.AppleFileServer guestAccess=false, com.apple.smb.server AllowGuestAccess=false
-OrgScore6_1_4="true"
+# Disabled - file sharing is common and reasonable for LINZ staff
+OrgScore6_1_4="false"
 # OrgScore6_1_4="false"
 
 # 6.1.5 Remove Guest home folder
@@ -454,7 +455,8 @@ OrgScore6_1_5="true"
 
 # 6.2 Turn on filename extensions
 # Does not work as a Configuration Profile - .GlobalPreferences.plist
-OrgScore6_2="true"
+# Does not seem to work as preferences either from Mojave... and low impact
+OrgScore6_2="false"
 # OrgScore6_2="false"
 
 # 6.3 Disable the automatic run of safe files in Safari
