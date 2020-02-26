@@ -708,7 +708,7 @@ fi
 Audit5_17="$(defaults read "$plistlocation" OrgScore5_17)"
 # If organizational score is 1 or true, check status of client
 if [ "$Audit5_17" = "1" ]; then
-	PolicyBannerText="CIS mandated Login Window banner"
+	PolicyBannerText="This computer system is for use only by authorised LINZ staff"
 	defaults write /Library/Preferences/com.apple.loginwindow.plist LoginwindowText -string "$PolicyBannerText"
 	echo "$(date -u)" "5.17 remediated" | tee -a "$logFile"
 fi
@@ -719,7 +719,7 @@ fi
 Audit5_18="$(defaults read "$plistlocation" OrgScore5_18)"
 # If organizational score is 1 or true, check status of client
 if [ "$Audit5_18" = "1" ]; then
-	PolicyBannerText="CIS mandated Login Window banner"
+	PolicyBannerText="This computer system is for use only by authorised LINZ staff"
 	/bin/echo "$PolicyBannerText" > "/Library/Security/PolicyBanner.txt"
 	/bin/chmod 755 "/Library/Security/PolicyBanner."* 
 	echo "$(date -u)" "5.18 remediated" | tee -a "$logFile"

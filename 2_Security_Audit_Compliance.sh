@@ -1189,7 +1189,7 @@ Audit6_1_2="$(defaults read "$plistlocation" OrgScore6_1_2)"
 # If organizational score is 1 or true, check status of client
 if [ "$Audit6_1_2" = "1" ]; then
 		passwordHints="$(defaults read /Library/Preferences/com.apple.loginwindow RetriesUntilHint 2>&1)"
-		if [ "$passwordHints" -gt 0 ] || [ "$passwordHints" = *exist* ]; then
+		if [ "$passwordHints" != "0" ]; then
 			echo "* 6.1.2 Disable Show password hints" >> "$auditfilelocation"
 			echo "$(date -u)" "6.1.2 fix" | tee -a "$logFile"; else
 			echo "$(date -u)" "6.1.2 passed" | tee -a "$logFile"
@@ -1265,7 +1265,7 @@ Audit6_3="$(defaults read "$plistlocation" OrgScore6_3)"
 # If organizational score is 1 or true, check status of client
 if [ "$Audit6_3" = "1" ]; then
 		safariSafe="$(defaults read -app Safari AutoOpenSafeDownloads 2>&1)"
-		if [ "$safariSafe" != "0" ]; then
+		if [ "$safariSafe" = "0" ]; then
 			echo "* 6.3 Disable the automatic run of safe files in Safari" >> "$auditfilelocation"
 			echo "$(date -u)" "6.3 fix" | tee -a "$logFile"; else
 			echo "$(date -u)" "6.3 passed" | tee -a "$logFile"
